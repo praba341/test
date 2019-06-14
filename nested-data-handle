@@ -1,1 +1,82 @@
 
+<html>
+<body>
+
+<script type="text/javascript">
+//subs only nested array
+var cars = {
+  label: 'Autos',
+  subs: [
+    {
+      label: 'SUVs',
+      subs: [
+            {
+              label: 'praba car 1',
+              subs: [
+				{
+				  label: 'praba car 1 one 1',
+				  subs: []
+				},
+				{
+				  label: 'praba car 1 one 2',
+				  subs: []
+				}
+			  ]
+            },
+            {
+              label: 'praba car 2',
+              subs: []
+            }
+          ]
+    },
+    {
+      label: 'Trucks',
+      subs: [
+        {
+          label: '2 Wheel Drive',
+          subs: []
+        },
+        {
+          label: '4 Wheel Drive',
+          subs: [
+            {
+              label: 'Ford',
+              subs: []
+            },
+            {
+              label: 'Chevrolet',
+              subs: []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      label: 'Sedan',
+      subs: []
+    }
+  ]
+};
+
+function treeDataTest(obj) {
+var result = [];
+    for (let key in obj) {
+        // checking if it's nested
+        if (obj.hasOwnProperty(key) && (typeof obj[key] === "object")) {
+			result = result.concat(treeDataTest(obj[key]));
+        } else {
+            // printing the flat attributes
+            console.log(key + " -> " + obj[key]);
+			result.push(key + " -> " + obj[key]);
+        }
+    }
+	return result;
+}
+
+var output = treeDataTest(cars);
+console.log(output);
+
+
+</script>
+</body>
+</html>
